@@ -11,9 +11,10 @@ def index():
         pass
     else:
         low_value = 1
-        high_value = 50
-        magic_number = random.randint(low_value, high_value)
-        
+        high_value = 25
+        session["magic_number"] = random.randint(low_value, high_value)
+        session["high_value"] = high_value
+        session["low_value"] = low_value
 
         message = ''
 
