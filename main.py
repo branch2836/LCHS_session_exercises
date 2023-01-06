@@ -7,6 +7,8 @@ app.secret_key = 'SIH*v-6u)c>q<;;h&);cRw,1E_CO8>'
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+
+    
     if request.method == 'POST':
         
         guess=int(request.form['guess'])
@@ -19,6 +21,7 @@ def index():
         else:
             if guess == magic_number:
                 message = "CORRECT!"
+                session['still_guessing'] = False
             elif guess < magic_number:
                 message = "Your guess is too low"
                 session['low_value']= guess
@@ -33,6 +36,7 @@ def index():
         session["magic_number"] = random.randint(low_value, high_value)
         session["high_value"] = high_value
         session["low_value"] = low_value
+        session['still_guessing'] = True
         message = ''
 
 
